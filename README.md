@@ -23,5 +23,11 @@ None — this is the starting point.
 
 ---
 
+## Progress
+
+- [x] Lecture 1 — What is Computation?
+
+---
+
 *Part of the MIT CS curriculum self-study path.*
 
