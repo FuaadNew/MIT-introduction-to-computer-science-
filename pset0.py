@@ -1,7 +1,7 @@
 
 
 
-import math
+import pylab
 
 def is_a_number(num):
     return ord('0') <= ord(num) <= ord('9')
@@ -16,7 +16,7 @@ def main():
     else:
         X,Y = int(X), int(Y)
         print(X**Y)
-        print(math.log(X))
+        print(pylab.log2(X))
     
         
     
