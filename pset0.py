@@ -4,7 +4,10 @@
 import pylab
 
 def is_a_number(num):
-    return ord('0') <= ord(num) <= ord('9')
+    for c in num:
+        if not ord('0') <= ord(c) <= ord('9'):
+            return False
+    return True
 
 def main():
     X = input("Enter a number X: ")
@@ -15,8 +18,8 @@ def main():
         main()
     else:
         X,Y = int(X), int(Y)
-        print(X**Y)
-        print(pylab.log2(X))
+        print("X**y =", X**Y)
+        print("log(x) =",pylab.log2(X))
     
         
     
