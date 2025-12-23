@@ -22,7 +22,7 @@ def main():
 
     def test_saving_rate(saving_rate,current_savings, total_cost,annual_salary):
         months = 0
-        while current_savings < down_payment - 100:
+        while months < 36:
             months+=1
             return_on_investment = current_savings * (return_on_investment_rate / 12)
             monthly_saved = (annual_salary / 12) * saving_rate
@@ -30,24 +30,25 @@ def main():
             if not months % 6:
                 annual_salary+= (semi_annual_raise * annual_salary)
 
-        return months
+        return current_savings
     
     def binary_search(annual_salary):
-        l,r = 0,1000
+        if test_saving_rate(1, 0, 1000000, annual_salary) < down_payment - 100:
+            print("It is not possible to pay the down payment in three years.")
+            return
+        l,r = 0,10000
         steps = 0
         while l<r:
             mid = (l + r) // 2
-            months = test_saving_rate(mid / 1000, 0, 1000000, annual_salary)
-            if months < 36:
-                r = mid
-            else:
+            test_savings = test_saving_rate(mid / 10000, 0, 1000000, annual_salary)
+            if test_savings < down_payment - 100:
                 l = mid + 1
+            else:
+                r = mid
             steps+=1
-        if months > 36:
-            print("It is not possible to pay the down payment in three years.")
-        else:
-            print("Best savings rate:", l / 1000)
-            print("Steps in bisection search:", steps)
+       
+        print("Best savings rate:", l / 10000)
+        print("Steps in bisection search:", steps)
     binary_search(annual_salary)
         
             
