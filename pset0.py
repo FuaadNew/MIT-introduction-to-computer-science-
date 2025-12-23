@@ -1,6 +1,4 @@
 
-
-
 import pylab
 
 def is_a_number(num):
