@@ -81,7 +81,7 @@ def get_guessed_word(secret_word, letters_guessed):
     words_guessed = set(letters_guessed)
 
     for c in secret_word:
-      if c in letters_guessed:
+      if c in words_guessed:
         res+=c
       else:
         res+= "_ "
