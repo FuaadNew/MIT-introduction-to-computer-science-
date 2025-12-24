@@ -60,8 +60,8 @@ def is_word_guessed(secret_word, letters_guessed):
     returns: boolean, True if all the letters of secret_word are in letters_guessed;
       False otherwise
     '''
-    for c in letters_guessed:
-      if c not in secret_word:
+    for c in secret_word:
+      if c not in letters_guessed:
         return False
     return True
     
@@ -76,7 +76,9 @@ def get_guessed_word(secret_word, letters_guessed):
       which letters in secret_word have been guessed so far.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    res = ['_'] * len(secret_word)
+    
+    
 
 
 
@@ -206,7 +208,7 @@ if __name__ == "__main__":
     
     secret_word = choose_word(wordlist)
     hangman(secret_word)
-
+    print(get_guessed_word('apple',['a']))
 
 ###############
     
