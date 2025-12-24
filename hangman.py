@@ -60,8 +60,11 @@ def is_word_guessed(secret_word, letters_guessed):
     returns: boolean, True if all the letters of secret_word are in letters_guessed;
       False otherwise
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    for c in letters_guessed:
+      if c not in secret_word:
+        return False
+    return True
+    
 
 
 
@@ -203,6 +206,7 @@ if __name__ == "__main__":
     
     secret_word = choose_word(wordlist)
     hangman(secret_word)
+
 
 ###############
     
