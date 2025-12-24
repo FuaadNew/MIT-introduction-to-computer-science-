@@ -77,17 +77,15 @@ def get_guessed_word(secret_word, letters_guessed):
       which letters in secret_word have been guessed so far.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    res = ['_'] * len(secret_word)
-    worddict = defaultdict(list)
-    for i,c in enumerate(secret_word):
-        worddict[c].append(i)
-      
-    for c in letters_guessed:
-      if c in worddict:
-        for indx in worddict[c]:
-          res[indx] = c
-    print(res)
-        
+    res = ""
+    words_guessed = set(letters_guessed)
+
+    for c in secret_word:
+      if c in letters_guessed:
+        res+=c
+      else:
+        res+= "_ "
+    return res
 
     
     
