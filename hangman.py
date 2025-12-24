@@ -152,8 +152,11 @@ def hangman(secret_word):
     guessed_letters = []
     check = set(secret_word)
     warnings = 3
-    while guesses > 0:
-     
+    while True:
+      if guesses == 0:
+        print("You ran out of guesses! YOU LOSE")
+        print(f"The word was {secret_word}")
+        break
       print(f"You have {warnings} warnings left")
       print(f"You have {guesses} guesses left")
       print(f"Available letters: {get_available_letters(guessed_letters)}")
