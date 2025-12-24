@@ -151,7 +151,7 @@ def hangman(secret_word):
        print(f"You have {guesses} guesses left")
        print(f"Available letters: {get_available_letters([])}")
        letter = input("please guess a letter: ")
-       guessed_words.append(letter)
+       guessed_words.append(letter.lower())
        print(get_guessed_word(secret_word,guessed_words))
        guesses-=1
 
