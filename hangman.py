@@ -141,23 +141,22 @@ def hangman(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     guesses = 6
-    computer_word = choose_word(wordlist)
     print("Welcome to the game Hangman!")
     print(f"I am thinking of a word that is {len(secret_word)} letters long")
     print("-------------")
     print(f"You start off with {guesses} guesses.")
     print(f"The computer also starts off with {guesses} guesses.")
-    guessed_words = []
+    guessed_letters = []
     check = set(secret_word)
     while guesses > 0:
       print(f"You have {guesses} guesses left")
-      print(f"Available letters: {get_available_letters(guessed_words)}")
+      print(f"Available letters: {get_available_letters(guessed_letters)}")
       letter = input("please guess a letter: ")
-      guessed_words.append(letter.lower())
+      guessed_letters.append(letter.lower())
       if letter in check:
-        print(f"Good guess: {get_guessed_word(secret_word,guessed_words)}")
+        print(f"Good guess: {get_guessed_word(secret_word,guessed_letters)}")
       else:
-         print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_words)}")
+         print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_letters)}")
       guesses-=1
 
 
