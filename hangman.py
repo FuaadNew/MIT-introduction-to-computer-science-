@@ -11,6 +11,7 @@
 # (so be sure to read the docstrings!)
 import random
 import string
+from collections import defaultdict
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -77,6 +78,17 @@ def get_guessed_word(secret_word, letters_guessed):
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     res = ['_'] * len(secret_word)
+    worddict = defaultdict(list)
+    for i,c in enumerate(secret_word):
+        worddict[c].append(i)
+      
+    for c in letters_guessed:
+      if c in worddict:
+        for indx in worddict[c]:
+          res[indx] = c
+    print(res)
+        
+
     
     
 
@@ -208,7 +220,7 @@ if __name__ == "__main__":
     
     secret_word = choose_word(wordlist)
     hangman(secret_word)
-    print(get_guessed_word('apple',['a']))
+    print(get_guessed_word('apple',['e', 'i', 'k', 'p', 'r', 's']))
 
 ###############
     
