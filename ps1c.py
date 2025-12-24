@@ -27,7 +27,7 @@ def main():
 
         while months < 36:
             months+=1
-            return_on_investment = current_savings * (.04 / 12)
+            return_on_investment = current_savings * (annual_return / 12)
             monthly_saved = (annual_salary / 12) * saving_rate
             current_savings+= monthly_saved + return_on_investment
             if not months % 6:
