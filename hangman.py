@@ -113,6 +113,9 @@ def get_available_letters(letters_guessed):
 
 
 
+def is_letter(letter):
+  return ord('a') <= ord(letter) <= ord('z')
+
     
     
 
@@ -145,19 +148,30 @@ def hangman(secret_word):
     print(f"I am thinking of a word that is {len(secret_word)} letters long")
     print("-------------")
     print(f"You start off with {guesses} guesses.")
-    print(f"The computer also starts off with {guesses} guesses.")
+    print("please make sure to enter a letter, if you input anything else you will be warned. Three strikes and you're out!")
     guessed_letters = []
     check = set(secret_word)
+    warnings = 3
     while guesses > 0:
+     
+      print(f"You have {warnings} warnings left")
       print(f"You have {guesses} guesses left")
       print(f"Available letters: {get_available_letters(guessed_letters)}")
-      letter = input("please guess a letter: ")
+      letter = input("please guess a letter: ").lower()
       guessed_letters.append(letter.lower())
+      if not is_letter(letter):
+        warnings-=1
+        if warnings == 0:
+          print("You didn't choose a letter!")
+          print("YOU LOSE")
+          return
+        print("You have been warned! Please choose a letter!")
       if letter in check:
         print(f"Good guess: {get_guessed_word(secret_word,guessed_letters)}")
       else:
          print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_letters)}")
       guesses-=1
+      print("------------")
 
 
 
