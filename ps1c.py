@@ -53,14 +53,13 @@ def main():
             mid = (l + r) // 2
 
             savings = check_savings_rate(mid / 10000 , annual_salary)
-            print(mid / 10000)
 
             if savings < goal - 100:
                 l = mid + 1
             else:
-                r  = mid - 1
+                r  = mid 
             steps+=1
-        print("Best savings rate:", mid / 10000)
+        print("Best savings rate:", l / 10000)
         print("Steps in bisection search:", steps)
         
 
