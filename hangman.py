@@ -99,7 +99,16 @@ def get_available_letters(letters_guessed):
       yet been guessed.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    res = ''
+    for letter in alphabet:
+      if letter not in letters_guessed:
+        res+=letter
+    return res
+
+
+
     
     
 
@@ -218,7 +227,9 @@ if __name__ == "__main__":
     
     secret_word = choose_word(wordlist)
     hangman(secret_word)
-    print(get_guessed_word('apple',['e', 'i', 'k', 'p', 'r', 's']))
+    print((get_available_letters(['e', 'i', 'k', 'p', 'r', 's'])) == "abcdfghjlmnoqtuvwxyz")
+
+    
 
 ###############
     
