@@ -16,6 +16,8 @@ from collections import defaultdict
 WORDLIST_FILENAME = "words.txt"
 
 
+
+
 def load_words():
     """
     Returns a list of valid words. Words are strings of lowercase letters.
@@ -77,6 +79,8 @@ def get_guessed_word(secret_word, letters_guessed):
       which letters in secret_word have been guessed so far.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
+
+    
     res = ""
     words_guessed = set(letters_guessed)
 
@@ -120,7 +124,6 @@ def hangman(secret_word):
     
     * At the start of the game, let the user know how many 
       letters the secret_word contains and how many guesses s/he starts with.
-      
     * The user should start with 6 guesses
 
     * Before each round, you should display to the user how many guesses
@@ -137,8 +140,25 @@ def hangman(secret_word):
     
     Follows the other limitations detailed in the problem write-up.
     '''
+    guesses = 6
+    print("Welcome to the game Hangman!")
+    print(f"I am thinking of a word that is {len(secret_word)} letters long")
+    print(f"You start off with {guesses} guesses")
+    guessed_words = []
+
+    while guesses > 0:
+
+       print(f"You have {guesses} guesses left")
+       print(f"Available letters: {get_available_letters([])}")
+       letter = input("please guess a letter: ")
+       guessed_words.append(letter)
+       print(get_guessed_word(secret_word,guessed_words))
+       guesses-=1
+
+
+
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    
 
 
 
@@ -226,8 +246,8 @@ if __name__ == "__main__":
     # uncomment the following two lines.
     
     secret_word = choose_word(wordlist)
+    print(secret_word)
     hangman(secret_word)
-    print((get_available_letters(['e', 'i', 'k', 'p', 'r', 's'])) == "abcdfghjlmnoqtuvwxyz")
 
     
 
