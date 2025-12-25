@@ -11,7 +11,6 @@
 # (so be sure to read the docstrings!)
 import random
 import string
-from collections import defaultdict
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -152,11 +151,12 @@ def hangman(secret_word):
     print(f"You start off with {guesses} guesses and {warnings} warnings.")
     print("Please make sure to enter a letter, if you input anything else you will be warned.")
     print("If you run out of warnings, you'll start to lose guesses. ")
+    vowels = set('aeiou')
     guessed_letters = []
     check = set(secret_word)
     already_guessed = set()
     while True:
-      if guesses == 0:
+      if guesses <= 0:
         print("You ran out of guesses! YOU LOSE")
         print(f"The word was {secret_word}.")
         break
@@ -168,16 +168,22 @@ def hangman(secret_word):
       print(f"Available letters: {get_available_letters(guessed_letters)}")
       letter = input("Please guess a letter: ").lower()
       if not is_letter(letter):
-        warnings-=1
-        print(f"Oops! That is not a valid letter! You have {warnings} warnings left: {get_guessed_word(secret_word,guessed_letters)}")
+        if warnings != 0:
+          warnings-=1
+          print(f"Oops! That is not a valid letter! You have {warnings} warnings left: {get_guessed_word(secret_word,guessed_letters)}")
+        else:
+          print("THIS IS NOT A VALID LETTER!! YOU'VE RAN OUT OF WARNINGS. YOU WILL LOSE A GUESS")
+          guesses-=1
+
         continue
       if letter in already_guessed:
-        if warnings!= 0:
+        if warnings > 0:
           print("YOU'VE ALREADY GUESSED THIS LETTER!! YOU HAVE BEEN WARNED")
           warnings-=1
         else:
           print("YOU'VE ALREADY GUESSED THIS LETTER!! YOU'VE RAN OUT OF WARNINGS. YOU WILL LOSE A GUESS")
           guesses-=1
+       
           
 
 
@@ -187,8 +193,13 @@ def hangman(secret_word):
       if letter in check:
         print(f"Good guess: {get_guessed_word(secret_word,guessed_letters)}")
       else:
-        print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_letters)}")
-        guesses-=1
+        if letter in vowels:
+          print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_letters)}")
+          print("Since that letter was a vowel you lose two guesses.")
+          guesses-=2
+        else:
+          print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_letters)}")
+          guesses-=1
       print("------------")
 
 
