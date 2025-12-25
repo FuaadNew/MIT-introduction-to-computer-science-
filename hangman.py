@@ -170,7 +170,8 @@ def hangman(secret_word):
       letter = input("please guess a letter: ").lower()
       if not is_letter(letter):
         warnings-=1
-        print("YOU HAVE BEEN WARNED! PLEASE CHOOSE A LETTER!")
+        print(f"Oops! That is not a valid letter! You have {warnings} warnings left: {get_guessed_word(secret_word,guessed_letters)}")
+        continue
       if letter in already_guessed:
         print("YOU'VE ALREADY GUESSED THIS LETTER!! YOU HAVE BEEN WARNED")
         warnings-=1
