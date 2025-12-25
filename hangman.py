@@ -165,7 +165,6 @@ def hangman(secret_word):
       print(f"You have {guesses} guesses left")
       print(f"Available letters: {get_available_letters(guessed_letters)}")
       letter = input("please guess a letter: ").lower()
-      guessed_letters.append(letter.lower())
       if not is_letter(letter):
         warnings-=1
         if warnings == 0:
@@ -175,6 +174,7 @@ def hangman(secret_word):
       if letter in already_guessed:
         print("You've already guessed this letter!!")
         continue
+      guessed_letters.append(letter.lower())
       already_guessed.add(letter)
       if letter in check:
         print(f"Good guess: {get_guessed_word(secret_word,guessed_letters)}")
