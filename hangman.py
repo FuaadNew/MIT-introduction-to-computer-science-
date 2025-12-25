@@ -154,6 +154,9 @@ def hangman(secret_word):
     already_guessed = set()
     warnings = 3
     while True:
+      if warnings == 0:
+          print("YOU'VE RAN OUT OF WARNINGS! YOU LOSE")
+          return
       if guesses == 0:
         print("You ran out of guesses! YOU LOSE")
         print(f"The word was {secret_word}")
@@ -167,12 +170,10 @@ def hangman(secret_word):
       letter = input("please guess a letter: ").lower()
       if not is_letter(letter):
         warnings-=1
-        if warnings == 0:
-          print("YOU'VE RAN OUT OF WARNINGS! YOU LOSE")
-          return
-        print("You have been warned! Please choose a letter!")
+        print("YOU HAVE BEEN WARNED! PLEASE CHOOSE A LETTER!")
       if letter in already_guessed:
-        print("You've already guessed this letter!!")
+        print("YOU'VE ALREADY GUESSED THIS LETTER!! YOU HAVE BEEN WARNED")
+        warnings-=1
         continue
       guessed_letters.append(letter.lower())
       already_guessed.add(letter)
