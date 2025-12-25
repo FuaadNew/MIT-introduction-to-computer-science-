@@ -312,7 +312,72 @@ def hangman_with_hints(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    guesses = 6
+    warnings = 3
+
+    print("Welcome to the game Hangman!")
+    print(f"I am thinking of a word that is {len(secret_word)} letters long")
+    print("-------------")
+    print(f"You start off with {guesses} guesses and {warnings} warnings.")
+    print("Please make sure to enter a letter, if you input anything else you will be warned.")
+    print("If you run out of warnings, you'll start to lose guesses. ")
+    vowels = set('aeiou')
+    guessed_letters = []
+    check = set(secret_word)
+    already_guessed = set()
+    while True:
+      if guesses <= 0:
+        print("You ran out of guesses! YOU LOSE")
+        print(f"The word was {secret_word}.")
+        break
+      if is_word_guessed(secret_word, guessed_letters):
+          print("Congratulations, you won!")
+          total_score = guesses * len(set(secret_word))
+          print(f"Your total score for this game is: {total_score}")
+          return
+      print(f"You have {warnings} warnings left")
+      print(f"You have {guesses} guesses left")
+      print(f"Available letters: {get_available_letters(guessed_letters)}")
+      letter = input("Please guess a letter: ").lower()
+
+      if letter == "*":
+        print("Possible word matches are: ")
+        show_possible_matches(get_guessed_word(secret_word,guessed_letters))
+        print("------------")
+        continue
+      if not is_letter(letter):
+        if warnings != 0:
+          warnings-=1
+          print(f"Oops! That is not a valid letter! You have {warnings} warnings left: {get_guessed_word(secret_word,guessed_letters)}")
+        else:
+          print("THIS IS NOT A VALID LETTER!! YOU'VE RAN OUT OF WARNINGS. YOU WILL LOSE A GUESS")
+          guesses-=1
+
+        continue
+      if letter in already_guessed:
+        if warnings > 0:
+          print("YOU'VE ALREADY GUESSED THIS LETTER!! YOU HAVE BEEN WARNED")
+          warnings-=1
+        else:
+          print("YOU'VE ALREADY GUESSED THIS LETTER!! YOU'VE RAN OUT OF WARNINGS. YOU WILL LOSE A GUESS")
+          guesses-=1
+
+        continue
+      guessed_letters.append(letter.lower())
+      already_guessed.add(letter)
+      if letter in check:
+        print(f"Good guess: {get_guessed_word(secret_word,guessed_letters)}")
+      else:
+        if letter in vowels:
+          print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_letters)}")
+          print("Since that letter was a vowel you lose two guesses.")
+          guesses-=2
+        else:
+          print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_letters)}")
+          guesses-=1
+      print("------------")
+
+    
 
 
 
@@ -330,8 +395,8 @@ if __name__ == "__main__":
     
     secret_word = choose_word(wordlist)
     #print(secret_word)
-    #hangman(secret_word)
-    show_possible_matches("a_ pl_ ")
+    hangman_with_hints(secret_word)
+   
 
    
     
