@@ -161,7 +161,9 @@ def hangman(secret_word):
         print(f"The word was {secret_word}.")
         break
       if is_word_guessed(secret_word, guessed_letters):
-          print("YOU WIN!!!!!!")
+          print("Congratulations, you won!")
+          total_score = guesses * len(set(secret_word))
+          print(f"Your total score for this game is: {total_score}")
           return
       print(f"You have {warnings} warnings left")
       print(f"You have {guesses} guesses left")
