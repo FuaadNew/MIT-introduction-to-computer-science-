@@ -11,7 +11,7 @@
 # (so be sure to read the docstrings!)
 import random
 import string
-
+from collections import Counter
 WORDLIST_FILENAME = "words.txt"
 
 
@@ -204,7 +204,7 @@ def hangman(secret_word):
           guesses-=1
       print("------------")
 
-
+    
 
 
 
@@ -233,13 +233,35 @@ def match_with_gaps(my_word, other_word):
         False otherwise: 
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    other_word = set(other_word)
+    my_word = my_word.strip()
+    word = ""
     for c in my_word:
-        if ord('a') <= ord(c) <= ord('z') and c not in other_word:
-          print(c)
-          return False
+      if c == " ":
+        continue
+      else:
+        word+=c
+    word = word.strip()
+    #check if same length
+    if len(word) != len(other_word):
+      return False
+    
+    #check if same order
+    for i in range(len(other_word)): 
+      if word[i] != "_" and word[i] != other_word[i]:
+        return False
+    
+    #check if counts are the same
+    wordCount = Counter(word)
+    otherCount = Counter(other_word)
+
+    for word,count in wordCount.items():
+      if word!= "_" and wordCount[word] != otherCount[word]:
+        return False
+    
     return True
-          
+ 
+        
+
  
 
 
@@ -255,8 +277,11 @@ def show_possible_matches(my_word):
 
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
-
+    res = []
+    for word in wordlist:
+      if match_with_gaps(my_word, word):
+        res.append(word)
+    print(" ".join(res)) if len(res) != 0 else print("No matches found")
 
 
 def hangman_with_hints(secret_word):
@@ -306,6 +331,7 @@ if __name__ == "__main__":
     secret_word = choose_word(wordlist)
     #print(secret_word)
     #hangman(secret_word)
+    show_possible_matches("a_ pl_ ")
 
    
     
