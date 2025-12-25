@@ -153,10 +153,14 @@ def hangman(secret_word):
     check = set(secret_word)
     warnings = 3
     while True:
+      
       if guesses == 0:
         print("You ran out of guesses! YOU LOSE")
         print(f"The word was {secret_word}")
         break
+      if is_word_guessed(secret_word, letters_guessed):
+          print("YOU WIN!!!!!!")
+          return
       print(f"You have {warnings} warnings left")
       print(f"You have {guesses} guesses left")
       print(f"Available letters: {get_available_letters(guessed_letters)}")
@@ -165,15 +169,14 @@ def hangman(secret_word):
       if not is_letter(letter):
         warnings-=1
         if warnings == 0:
-          print("You didn't choose a letter!")
-          print("YOU LOSE")
+          print("YOU'VE RAN OUT OF WARNINGS! YOU LOSE")
           return
         print("You have been warned! Please choose a letter!")
       if letter in check:
         print(f"Good guess: {get_guessed_word(secret_word,guessed_letters)}")
       else:
-         print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_letters)}")
-      guesses-=1
+        print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word,guessed_letters)}")
+        guesses-=1
       print("------------")
 
 
