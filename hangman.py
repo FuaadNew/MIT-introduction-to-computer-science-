@@ -144,15 +144,17 @@ def hangman(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     guesses = 6
+    warnings = 3
+
     print("Welcome to the game Hangman!")
     print(f"I am thinking of a word that is {len(secret_word)} letters long")
     print("-------------")
-    print(f"You start off with {guesses} guesses.")
-    print("please make sure to enter a letter, if you input anything else you will be warned. Three strikes and you're out!")
+    print(f"You start off with {guesses} guesses and {warnings} warnings.")
+    print("Please make sure to enter a letter, if you input anything else you will be warned.")
+    print("If you run out of warnings, you'll start to lose guesses. ")
     guessed_letters = []
     check = set(secret_word)
     already_guessed = set()
-    warnings = 3
     while True:
       if guesses == 0:
         print("You ran out of guesses! YOU LOSE")
@@ -164,7 +166,7 @@ def hangman(secret_word):
       print(f"You have {warnings} warnings left")
       print(f"You have {guesses} guesses left")
       print(f"Available letters: {get_available_letters(guessed_letters)}")
-      letter = input("please guess a letter: ").lower()
+      letter = input("Please guess a letter: ").lower()
       if not is_letter(letter):
         warnings-=1
         print(f"Oops! That is not a valid letter! You have {warnings} warnings left: {get_guessed_word(secret_word,guessed_letters)}")
@@ -175,6 +177,7 @@ def hangman(secret_word):
           warnings-=1
         else:
           print("YOU'VE ALREADY GUESSED THIS LETTER!! YOU'VE RAN OUT OF WARNINGS. YOU WILL LOSE A GUESS")
+          guesses-=1
           
 
 
