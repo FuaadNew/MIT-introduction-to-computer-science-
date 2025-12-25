@@ -233,7 +233,14 @@ def match_with_gaps(my_word, other_word):
         False otherwise: 
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    other_word = set(other_word)
+    for c in my_word:
+        if ord('a') <= ord(c) <= ord('z') and c not in other_word:
+          print(c)
+          return False
+    return True
+          
+ 
 
 
 
@@ -297,9 +304,10 @@ if __name__ == "__main__":
     # uncomment the following two lines.
     
     secret_word = choose_word(wordlist)
-    print(secret_word)
-    hangman(secret_word)
+    #print(secret_word)
+    #hangman(secret_word)
 
+   
     
 
 ###############
