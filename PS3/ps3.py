@@ -10,6 +10,7 @@
 import math
 import random
 import string
+from collections import Counter
 
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
@@ -194,7 +195,7 @@ def update_hand(hand, word):
         if val!= 0:
             res[key] = val
 
-    return res # TO DO... Remove this line when you implement this function
+    return res 
 
 #
 # Problem #3: Test word validity
@@ -210,8 +211,20 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     returns: boolean
     """
+    words = set(word_list)
+    if word.lower() not in words:
+        return False
+    wordCount = get_frequency_dict(word.lower())
 
-    pass  # TO DO... Remove this line when you implement this function
+    for key, val in wordCount.items():
+        if key.lower() not in hand:
+            return False
+        if hand[key.lower()] < wordCount[key.lower()]:
+            return False
+    return True
+     
+    
+
 
 #
 # Problem #5: Playing a hand
