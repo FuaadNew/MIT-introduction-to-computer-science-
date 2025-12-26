@@ -95,14 +95,12 @@ def get_word_score(word, n):
     points = 0
     if word == "":
         return 0
-    missed_chars = ""
     for c in word:
         if c.lower() in letter_set:
             points+= SCRABBLE_LETTER_VALUES[c.lower()]
         else:
             missed_chars+=c
     wordlen  = len(word)
-    first_points = points
     second_component = 7*wordlen - 3*(n-wordlen)
     points *= second_component if second_component > 1 else 1
     return points
