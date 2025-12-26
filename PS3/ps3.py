@@ -91,8 +91,28 @@ def get_word_score(word, n):
     n: int >= 0
     returns: int >= 0
     """
+    letter_set = set(SCRABBLE_LETTER_VALUES.keys())
+    points = 0
+    if word == "":
+        return 0
+    missed_chars = ""
+    for c in word:
+        if c.lower() in letter_set:
+            points+= SCRABBLE_LETTER_VALUES[c.lower()]
+        else:
+            missed_chars+=c
+    wordlen  = len(word)
+    first_points = points
+    second_component = 7*wordlen - 3*(n-wordlen)
+    points *= second_component if second_component > 1 else 1
+    return points
+
     
-    pass  # TO DO... Remove this line when you implement this function
+#SCRABBLE_LETTER_VALUES = {
+    #'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 's': 1, 't': 1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10
+    #points = 15
+    
+    
 
 #
 # Make sure you understand how this function works and what it does!
