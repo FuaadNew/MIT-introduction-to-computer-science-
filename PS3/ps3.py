@@ -274,7 +274,7 @@ def calculate_handlen(hand):
     for key,val in hand.items():
         res+=val
     
-    return val # TO DO... Remove this line when you implement this function
+    return res # TO DO... Remove this line when you implement this function
 
 def play_hand(hand, word_list):
 
@@ -330,7 +330,7 @@ def play_hand(hand, word_list):
                 # Tell the user how many points the word earned,
                 word_score = get_word_score(user_input, n)
                 score+= word_score
-                print(f"{user_input} earned {word_score} points. Total: {score} points")
+                print(f'"{user_input}" earned {word_score} points. Total: {score} points')
                 # and the updated total score
             # Otherwise (the word is not valid):
             else:
@@ -360,6 +360,14 @@ def play_hand(hand, word_list):
 # procedure you will use to substitute a letter in a hand
 #
 
+def replaceLetter(hand,original, new):
+    for key,val in hand.items():
+        if key == original:
+            hand[new] = val
+            del hand[original]
+    return hand
+
+
 def substitute_hand(hand, letter):
     """ 
     Allow the user to replace all copies of one letter in the hand (chosen by user)
@@ -382,8 +390,33 @@ def substitute_hand(hand, letter):
     letter: string
     returns: dictionary (string -> int)
     """
+
+    #make a set of letters in hand 
+    handSet = set(hand.keys())
+    #if letter chosen by user is not in hand 
+    if letter not in handSet:
+        #return the same hand 
+        return hand
+    #else 
+    else:
+        #make a random choice from vowels or consanants that isn't in hand and not the letter chosen
+        randomletterString = VOWELS + CONSONANTS
+        choiceString = ""
+        for c in randomletterString:
+            if c == letter:
+                continue
+            else:
+                choiceString+=c
+
+        newLetter = random.choice(choiceString)
+        hand = replaceLetter(hand,letter, newLetter)
+        
+    return hand
+
+       
+
     
-    pass  # TO DO... Remove this line when you implement this function
+    # TO DO... Remove this line when you implement this function
        
     
 def play_game(word_list):
@@ -428,6 +461,7 @@ def play_game(word_list):
 #
 if __name__ == '__main__':
     word_list = load_words()
-    hand = {"a":1, "j":1, "e":1, "f":1, "*":1, "r":1, "x":1}
+   # a j e f * r x
+    hand = {"a":1, "j":1, "e":1, "f":1, "*": 1, "r":1, "x":1}
     play_hand(hand, word_list)
     #play_game(word_list)
