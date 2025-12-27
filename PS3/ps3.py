@@ -268,8 +268,13 @@ def calculate_handlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
+
+    res = 0
+
+    for key,val in hand.items():
+        res+=val
     
-    pass  # TO DO... Remove this line when you implement this function
+    return val # TO DO... Remove this line when you implement this function
 
 def play_hand(hand, word_list):
 
