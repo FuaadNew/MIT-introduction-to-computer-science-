@@ -126,7 +126,7 @@ def display_hand(hand):
 
     hand: dictionary (string -> int)
     """
-    
+    print("Current Hand:", end = ' ')
     for letter in hand.keys():
         for j in range(hand[letter]):
              print(letter, end=' ')      # print all on the same line
@@ -307,38 +307,48 @@ def play_hand(hand, word_list):
       
     """
     
-    # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
+    # 
     # Keep track of the total score
+    score = 0
     
     # As long as there are still letters left in the hand:
-    
+    n = calculate_handlen(hand)
+    while n > 0:
         # Display the hand
+        display_hand(hand)
         
         # Ask user for input
-        
+        user_input = input('Enter word, or "!!" to indicate that you are finished: ' )
         # If the input is two exclamation points:
-        
+        if user_input == "!!" :
             # End the game (break out of the loop)
-
-            
+            break
         # Otherwise (the input is not two exclamation points):
-
+        else:
             # If the word is valid:
-
+            if is_valid_word(user_input, hand, word_list):
                 # Tell the user how many points the word earned,
+                word_score = get_word_score(user_input, n)
+                score+= word_score
+                print(f"{user_input} earned {word_score} points. Total: {score} points")
                 # and the updated total score
-
             # Otherwise (the word is not valid):
+            else:
                 # Reject invalid word (print a message)
-                
+                print("That is not a valid word. Please choose another word.")
             # update the user's hand by removing the letters of their inputted word
-            
+            hand = update_hand(hand, user_input)
+            n = calculate_handlen(hand)
 
     # Game is over (user entered '!!' or ran out of letters),
     # so tell user the total score
+    if n == 0:
+        print(f"Ran out of letters. Total score: {score} points") 
+    else:
+        print(f"Total score: {score} points")
 
     # Return the total score as result of function
-
+    return score
 
 
 #
@@ -418,5 +428,6 @@ def play_game(word_list):
 #
 if __name__ == '__main__':
     word_list = load_words()
-    deal_hand(6)
-    play_game(word_list)
+    hand = {"a":1, "j":1, "e":1, "f":1, "*":1, "r":1, "x":1}
+    play_hand(hand, word_list)
+    #play_game(word_list)
