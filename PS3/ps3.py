@@ -152,15 +152,18 @@ def deal_hand(n):
     
     hand={}
     num_vowels = int(math.ceil(n / 3))
-
-    for i in range(num_vowels):
-        x = random.choice(VOWELS)
-        hand[x] = hand.get(x, 0) + 1
+    indexes = [i for i in range(num_vowels)]
     
+    wildCardChoice = random.choice(indexes)
+    for i in range(num_vowels):
+        if i == wildCardChoice:
+            hand['*'] = 1
+        else:
+            x = random.choice(VOWELS)
+            hand[x] = hand.get(x, 0) + 1
     for i in range(num_vowels, n):    
         x = random.choice(CONSONANTS)
         hand[x] = hand.get(x, 0) + 1
-    
     return hand
 
 #
@@ -200,6 +203,25 @@ def update_hand(hand, word):
 #
 # Problem #3: Test word validity
 #
+
+def replaceWildCard(word):
+    """""
+    returns a list of words of all results where the wildcard in input word is replaced with a vowel from vowel list
+
+    """""
+    res = []
+    wildcardIndex = 0
+    for i in range(len(word)):
+        if word[i] == "*":
+            wildcardIndex = i
+            break
+    for vowel in VOWELS:
+        replace = list(word)
+        replace[wildcardIndex] = vowel
+        res.append("".join(replace))
+    return res
+
+
 def is_valid_word(word, hand, word_list):
     """
     Returns True if word is in the word_list and is entirely
@@ -212,10 +234,20 @@ def is_valid_word(word, hand, word_list):
     returns: boolean
     """
     words = set(word_list)
+    wildCardFound = False
     if word.lower() not in words:
-        return False
+        if '*' not in word.lower():
+            return False
+        checkList = replaceWildCard(word)
+        for subWord in checkList:
+            if subWord in words:
+                wildCardFound = True
+                break
+        if not wildCardFound:
+            return False
+            
     wordCount = get_frequency_dict(word.lower())
-
+    
     for key, val in wordCount.items():
         if key.lower() not in hand:
             return False
@@ -381,4 +413,5 @@ def play_game(word_list):
 #
 if __name__ == '__main__':
     word_list = load_words()
+    deal_hand(6)
     play_game(word_list)
