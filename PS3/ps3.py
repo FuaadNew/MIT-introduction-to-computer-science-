@@ -465,7 +465,7 @@ def play_game(word_list):
                 break
             total_score = round_score
             if calculate_handlen(hand) == 0:
-                print("Ran out of letters")
+                print("Ran out of letters", end = ' ')
                 break
         print(f"Total score for this hand: {total_score}")
         print("----------")
