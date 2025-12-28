@@ -22,19 +22,40 @@ def get_permutations(sequence):
     Note: depending on your implementation, you may return the permutations in
     a different order than what is listed here.
     '''
+    res = []
+    counts = {}
+    for num in sequence:
+        counts[num]= 1 + counts.get(num,0)
+    def dfs(substr,count):
+        #add i
+        if len(substr) == len(sequence):
+            res.append("".join(substr[:]))
+            return
+        for num in count.keys():
+            if count[num] > 0:
+                substr.append(num)
+                count[num]-=1
+                dfs(substr,count)
+                substr.pop()
+                count[num]+=1
+    dfs([],counts)
+    return res
 
-    pass #delete this line and replace with your code here
+
+        
+
+    
 
 if __name__ == '__main__':
 #    #EXAMPLE
-#    example_input = 'abc'
-#    print('Input:', example_input)
-#    print('Expected Output:', ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
-#    print('Actual Output:', get_permutations(example_input))
+     example_input = 'abc'
+     print('Input:', example_input)
+     print('Expected Output:', ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
+     print('Actual Output:', get_permutations(example_input))
     
 #    # Put three example test cases here (for your sanity, limit your inputs
 #    to be three characters or fewer as you will have n! permutations for a 
 #    sequence of length n)
 
-    pass #delete this line and replace with your code here
+    #delete this line and replace with your code here
 
