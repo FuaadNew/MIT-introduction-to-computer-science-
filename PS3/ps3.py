@@ -456,28 +456,23 @@ def play_game(word_list):
         handList[i] = (deal_hand(HAND_SIZE))
 
     
-    def play(rounds,hand,total_score,replayFlag):
+    def play(rounds,hand,total_score):
         original_hand = hand
         original_score = total_score
         while True:
             round_score,hand = play_hand(hand, word_list, total_score)
             if round_score == -1:
                 break
-            total_score+=round_score
+            total_score = round_score
             if calculate_handlen(hand) == 0:
                 print("Ran out of letters")
                 break
         print(f"Total score for this hand: {total_score}")
         print("----------")
-        if not replayFlag:
-            replay = input("Would you like to replay the hand? ")
-            if replay.lower() == "yes":
-                new_score= play(rounds,original_hand,original_score, True)
-                if new_score > total_score:
-                    total_score = new_score
         return total_score
     gameScore = 0
     substitute_flag = False
+    replay_flag = False
     for hand in handList:   
         display_hand(hand)
         if not substitute_flag:
@@ -486,7 +481,17 @@ def play_game(word_list):
                 letter = input("Which letter would you like to replace: ") 
                 hand = substitute_hand(hand, letter)
                 substitute_flag = True
-        gameScore+= play(rounds,hand,total_score, False)
+        hand_score = play(rounds,hand,total_score)
+        if not replayFlag:
+            replay = input("Would you like to replay the hand? ")
+            if replay.lower() == "yes":
+                new_score= play(rounds,hand,total_score)
+                if new_score > hand_score:
+                    gameScore+= new_score
+                else:
+                    gameScore+= hand_score
+                replay_flag = True
+
 
     print(f"Total score over all hands: {gameScore}")
     originalhand = hand
