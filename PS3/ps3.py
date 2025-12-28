@@ -474,7 +474,6 @@ def play_game(word_list):
     substitute_flag = False
     replay_flag = False
     for hand in handList:   
-        display_hand(hand)
         if not substitute_flag:
             change_hand = input("Would you like to substitute a letter? ")
             if change_hand.lower() == "yes":
@@ -488,9 +487,11 @@ def play_game(word_list):
                 new_score= play(rounds,hand,total_score)
                 if new_score > hand_score:
                     gameScore+= new_score
-                else:
-                    gameScore+= hand_score
                 replay_flag = True
+        else:
+            gameScore+= hand_score
+
+        
 
 
     print(f"Total score over all hands: {gameScore}")
