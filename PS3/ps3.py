@@ -477,12 +477,15 @@ def play_game(word_list):
                     total_score = new_score
         return total_score
     gameScore = 0
+    substitute_flag = False
     for hand in handList:   
         display_hand(hand)
-        change_hand = input("Would you like to substitute a letter? ")
-        if change_hand.lower() == "yes":
-            letter = input("Which letter would you like to replace: ") 
-            hand = substitute_hand(hand, letter)
+        if not substitute_flag:
+            change_hand = input("Would you like to substitute a letter? ")
+            if change_hand.lower() == "yes":
+                letter = input("Which letter would you like to replace: ") 
+                hand = substitute_hand(hand, letter)
+                substitute_flag = True
         gameScore+= play(rounds,hand,total_score, False)
 
     print(f"Total score over all hands: {gameScore}")
