@@ -482,7 +482,7 @@ def play_game(word_list):
                 hand = substitute_hand(hand, letter)
                 substitute_flag = True
         hand_score = play(rounds,hand,total_score)
-        if not replayFlag:
+        if not replay_flag:
             replay = input("Would you like to replay the hand? ")
             if replay.lower() == "yes":
                 new_score= play(rounds,hand,total_score)
