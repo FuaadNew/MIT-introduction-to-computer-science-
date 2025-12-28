@@ -27,7 +27,6 @@ def get_permutations(sequence):
     for num in sequence:
         counts[num]= 1 + counts.get(num,0)
     def dfs(substr,count):
-        #add i
         if len(substr) == len(sequence):
             res.append("".join(substr[:]))
             return
@@ -47,15 +46,34 @@ def get_permutations(sequence):
     
 
 if __name__ == '__main__':
-#    #EXAMPLE
-     example_input = 'abc'
-     print('Input:', example_input)
-     print('Expected Output:', ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
-     print('Actual Output:', get_permutations(example_input))
-    
-#    # Put three example test cases here (for your sanity, limit your inputs
-#    to be three characters or fewer as you will have n! permutations for a 
-#    sequence of length n)
+    # Test Case 1: Single character (base case)
+    print('--- Test Case 1 ---')
+    test1 = 'a'
+    print('Input:', test1)
+    print('Expected Output:', ['a'])
+    print('Actual Output:', get_permutations(test1))
+    print()
 
-    #delete this line and replace with your code here
+    # Test Case 2: Two characters
+    print('--- Test Case 2 ---')
+    test2 = 'ab'
+    print('Input:', test2)
+    print('Expected Output:', ['ab', 'ba'])
+    print('Actual Output:', get_permutations(test2))
+    print()
+
+    # Test Case 3: Three characters (original example)
+    print('--- Test Case 3 ---')
+    test3 = 'abc'
+    print('Input:', test3)
+    print('Expected Output:', ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
+    print('Actual Output:', get_permutations(test3))
+    print()
+
+    # Bonus Test Case 4: String with duplicate characters
+    print('--- Test Case 4 (Bonus: duplicates) ---')
+    test4 = 'aab'
+    print('Input:', test4)
+    print('Expected Output:', ['aab', 'aba', 'baa'])
+    print('Actual Output:', get_permutations(test4))
 
