@@ -473,8 +473,9 @@ def play_game(word_list):
     gameScore = 0
     substitute_flag = False
     replay_flag = False
-    for hand in handList:   
+    for hand in handList: 
         if not substitute_flag:
+            display_hand(hand)  
             change_hand = input("Would you like to substitute a letter? ")
             if change_hand.lower() == "yes":
                 letter = input("Which letter would you like to replace: ") 
@@ -489,8 +490,10 @@ def play_game(word_list):
                     gameScore+= new_score
                 else:
                     gameScore+= hand_score
-
                 replay_flag = True
+            else:
+                gameScore+= hand_score
+               
         else:
             gameScore+= hand_score
 
