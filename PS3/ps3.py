@@ -456,7 +456,7 @@ def play_game(word_list):
         handList[i] = (deal_hand(HAND_SIZE))
 
     
-    def play(rounds,hand,total_score):
+    def play(hand,total_score):
         original_hand = hand
         original_score = total_score
         while True:
@@ -481,11 +481,11 @@ def play_game(word_list):
                 letter = input("Which letter would you like to replace: ") 
                 hand = substitute_hand(hand, letter)
                 substitute_flag = True
-        hand_score = play(rounds,hand,total_score)
+        hand_score = play(hand,total_score)
         if not replay_flag:
             replay = input("Would you like to replay the hand? ")
             if replay.lower() == "yes":
-                new_score= play(rounds,hand,total_score)
+                new_score= play(hand,total_score)
                 if new_score > hand_score:
                     gameScore+= new_score
                 else:
@@ -501,7 +501,6 @@ def play_game(word_list):
 
 
     print(f"Total score over all hands: {gameScore}")
-    originalhand = hand
 
     
     
