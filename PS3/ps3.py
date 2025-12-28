@@ -487,6 +487,9 @@ def play_game(word_list):
                 new_score= play(rounds,hand,total_score)
                 if new_score > hand_score:
                     gameScore+= new_score
+                else:
+                    gameScore+= hand_score
+
                 replay_flag = True
         else:
             gameScore+= hand_score
