@@ -70,7 +70,7 @@ class Message(object):
             self.valid_words (list, determined using helper function load_words)
         '''
         self.message_text = text
-        self.valid_words = []
+        self.valid_words = load_words("words.txt")
 
     def get_message_text(self):
         '''
@@ -115,12 +115,12 @@ class Message(object):
             upper_dict[i] = x
         
         shift_dict = {}
-       
+        wrap_around = len(lower_case)
         for i,x in enumerate(lower_case):
-            shift_dict[x] = lower_dict[i + shift]
+            shift_dict[x] = lower_dict[(i + shift) % wrap_around]
 
         for i,x in enumerate(upper_case):
-            shift_dict[x] = upper_dict[i + shift]
+            shift_dict[x] = upper_dict[(i + shift) % wrap_around]
 
 
 
