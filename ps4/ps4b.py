@@ -69,7 +69,7 @@ class Message(object):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        self.message_text = ""
+        self.message_text = text
         self.valid_words = []
 
     def get_message_text(self):
@@ -78,7 +78,7 @@ class Message(object):
         
         Returns: self.message_text
         '''
-        return self.text
+        return self.message_text
 
     def get_valid_words(self):
         '''
