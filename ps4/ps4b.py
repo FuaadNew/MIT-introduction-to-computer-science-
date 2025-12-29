@@ -106,21 +106,15 @@ class Message(object):
          #delete this line and replace with your code here
         lower_case = string.ascii_lowercase
         upper_case = string.ascii_uppercase
-        lower_dict = {}
-        upper_dict = {}
-        for i,x in enumerate(lower_case):
-            lower_dict[i] = x
-
-        for i,x in enumerate(upper_case):
-            upper_dict[i] = x
+        
         
         shift_dict = {}
         wrap_around = len(lower_case)
         for i,x in enumerate(lower_case):
-            shift_dict[x] = lower_dict[(i + shift) % wrap_around]
+            shift_dict[x] = lower_case[(i + shift) % wrap_around]
 
         for i,x in enumerate(upper_case):
-            shift_dict[x] = upper_dict[(i + shift) % wrap_around]
+            shift_dict[x] = upper_case[(i + shift) % wrap_around]
 
 
 
@@ -141,7 +135,7 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        shift_dict = self.build_shift_dict(self.shift)
+        shift_dict = self.build_shift_dict(shift)
         res = ""
         for c in self.message_text:
             if c in shift_dict:
