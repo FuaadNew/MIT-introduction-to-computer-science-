@@ -63,14 +63,14 @@ class Message(object):
     def __init__(self, text):
         '''
         Initializes a Message object
-                
         text (string): the message's text
 
         a Message object has two attributes:
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        self.message_text = ""
+        self.valid_words = []
 
     def get_message_text(self):
         '''
@@ -78,7 +78,7 @@ class Message(object):
         
         Returns: self.message_text
         '''
-        pass #delete this line and replace with your code here
+        return self.message_text
 
     def get_valid_words(self):
         '''
@@ -87,7 +87,7 @@ class Message(object):
         
         Returns: a COPY of self.valid_words
         '''
-        pass #delete this line and replace with your code here
+        return self.valid_words[:]
 
     def build_shift_dict(self, shift):
         '''
@@ -103,7 +103,31 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        pass #delete this line and replace with your code here
+         #delete this line and replace with your code here
+        lower_case = string.ascii_lowercase
+        upper_case = string.ascii_uppercase
+        lower_dict = {}
+        upper_dict = {}
+        for i,x in enumerate(lower_case):
+            lower_dict[i] = x
+
+        for i,x in enumerate(upper_case):
+            upper_dict[i] = x
+        
+        shift_dict = {}
+
+        for i,x in enumerate(lower_case):
+            shift_dict[x] = lower_dict[i + shift]
+
+        for i,x in enumerate(upper_case):
+            shift_dict[x] = upper_dict[i + shift]
+
+
+
+        return shift_dict
+        
+
+
 
     def apply_shift(self, shift):
         '''
@@ -117,7 +141,14 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        pass #delete this line and replace with your code here
+        shift_dict = self.build_shift_dict(self.shift)
+        res = ""
+        for c in self.message_text:
+            if c in shift_dict:
+                res+=shift_dict[c]
+            else:
+                res+=c
+        return res
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
@@ -143,7 +174,7 @@ class PlaintextMessage(Message):
         
         Returns: self.shift
         '''
-        pass #delete this line and replace with your code here
+        return#delete this line and replace with your code here
 
     def get_encryption_dict(self):
         '''
@@ -207,6 +238,65 @@ class CiphertextMessage(Message):
 
 if __name__ == '__main__':
 
+    # ===== MESSAGE CLASS TESTS =====
+    print('===== Message Class Tests =====')
+    print()
+
+    # Test 1: Message initialization and get_message_text
+    print('--- Test 1: Message init and get_message_text ---')
+    msg1 = Message('Hello, World!')
+    print('Input: "Hello, World!"')
+    print('Expected get_message_text(): "Hello, World!"')
+    print('Actual get_message_text():', msg1.get_message_text())
+    print()
+
+    # Test 2: get_valid_words returns a copy (list)
+    print('--- Test 2: get_valid_words ---')
+    msg2 = Message('test')
+    valid_words = msg2.get_valid_words()
+    print('Input: "test"')
+    print('Expected: a list of valid words (should not be empty)')
+    print('Actual: got', len(valid_words), 'words')
+    print('Is "hello" a valid word?', 'hello' in valid_words)
+    print()
+
+    # Test 3: build_shift_dict with shift=0 (no change)
+    print('--- Test 3: build_shift_dict (shift=0) ---')
+    msg3 = Message('abc')
+    shift_dict_0 = msg3.build_shift_dict(0)
+    print('Input shift: 0')
+    print('Expected: a->a, b->b, z->z, A->A')
+    print('Actual: a->', shift_dict_0.get('a'), ', b->', shift_dict_0.get('b'), 
+          ', z->', shift_dict_0.get('z'), ', A->', shift_dict_0.get('A'))
+    print()
+
+    # Test 4: build_shift_dict with shift=2
+    print('--- Test 4: build_shift_dict (shift=2) ---')
+    msg4 = Message('abc')
+    shift_dict_2 = msg4.build_shift_dict(2)
+    print('Input shift: 2')
+    print('Expected: a->c, b->d, y->a, z->b, A->C')
+    print('Actual: a->', shift_dict_2.get('a'), ', b->', shift_dict_2.get('b'),
+          ', y->', shift_dict_2.get('y'), ', z->', shift_dict_2.get('z'),
+          ', A->', shift_dict_2.get('A'))
+    print()
+
+    # Test 5: apply_shift
+    print('--- Test 5: apply_shift ---')
+    msg5 = Message('Hello, World!')
+    print('Input: "Hello, World!" with shift=2')
+    print('Expected: "Jgnnq, Yqtnf!"')
+    print('Actual:', msg5.apply_shift(2))
+    print()
+
+    # Test 6: apply_shift with shift=0 (no change)
+    print('--- Test 6: apply_shift (shift=0) ---')
+    msg6 = Message('abc XYZ!')
+    print('Input: "abc XYZ!" with shift=0')
+    print('Expected: "abc XYZ!"')
+    print('Actual:', msg6.apply_shift(0))
+    print()
+
 #    #Example test case (PlaintextMessage)
 #    plaintext = PlaintextMessage('hello', 2)
 #    print('Expected Output: jgnnq')
@@ -219,6 +309,4 @@ if __name__ == '__main__':
 
     #TODO: WRITE YOUR TEST CASES HERE
 
-    #TODO: best shift value and unencrypted story 
-    
-    pass #delete this line and replace with your code here
+    #TODO: best shift value and unencrypted story
