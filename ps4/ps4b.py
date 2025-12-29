@@ -189,7 +189,7 @@ class PlaintextMessage(Message):
         
         Returns: self.message_text_encrypted
         '''
-        self.message_text_encrypted #delete this line and replace with your code here
+        return self.message_text_encrypted #delete this line and replace with your code here
 
     def change_shift(self, shift):
         '''
