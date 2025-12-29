@@ -78,7 +78,7 @@ class Message(object):
         
         Returns: self.message_text
         '''
-        return self.message_text
+        return self.text
 
     def get_valid_words(self):
         '''
@@ -115,7 +115,7 @@ class Message(object):
             upper_dict[i] = x
         
         shift_dict = {}
-
+       
         for i,x in enumerate(lower_case):
             shift_dict[x] = lower_dict[i + shift]
 
