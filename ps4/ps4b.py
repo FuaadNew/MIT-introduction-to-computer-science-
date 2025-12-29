@@ -298,6 +298,28 @@ if __name__ == '__main__':
     print('Actual:', msg6.apply_shift(0))
     print()
 
+    # ===== PLAINTEXTMESSAGE CLASS TESTS =====
+    print('===== PlaintextMessage Class Tests =====')
+    print()
+
+    # Test 1: Basic encryption
+    print('--- Test 1: PlaintextMessage basic encryption ---')
+    plaintext1 = PlaintextMessage('hello', 2)
+    print('Input: "hello" with shift=2')
+    print('Expected get_message_text_encrypted(): "jgnnq"')
+    print('Actual:', plaintext1.get_message_text_encrypted())
+    print('Expected get_shift(): 2')
+    print('Actual:', plaintext1.get_shift())
+    print()
+
+    # Test 2: Encryption with punctuation and mixed case
+    print('--- Test 2: PlaintextMessage with punctuation ---')
+    plaintext2 = PlaintextMessage('Hello, World!', 4)
+    print('Input: "Hello, World!" with shift=4')
+    print('Expected get_message_text_encrypted(): "Lipps, Asvph!"')
+    print('Actual:', plaintext2.get_message_text_encrypted())
+    print()
+
 #    #Example test case (PlaintextMessage)
 #    plaintext = PlaintextMessage('hello', 2)
 #    print('Expected Output: jgnnq')
