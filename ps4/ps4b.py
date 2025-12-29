@@ -181,7 +181,7 @@ class PlaintextMessage(Message):
         
         Returns: a COPY of self.encryption_dict
         '''
-        return self.encryption_dict[:]
+        return self.encryption_dict.copy()
 
     def get_message_text_encrypted(self):
         '''
