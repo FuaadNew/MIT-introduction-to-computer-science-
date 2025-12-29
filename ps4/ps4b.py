@@ -181,7 +181,7 @@ class PlaintextMessage(Message):
         
         Returns: a COPY of self.encryption_dict
         '''
-       return self.encryption_dict[:]
+        return self.encryption_dict[:]
 
     def get_message_text_encrypted(self):
         '''
@@ -280,7 +280,6 @@ if __name__ == '__main__':
     print('Actual: a->', shift_dict_2.get('a'), ', b->', shift_dict_2.get('b'),
           ', y->', shift_dict_2.get('y'), ', z->', shift_dict_2.get('z'),
           ', A->', shift_dict_2.get('A'))
-    print()
 
     # Test 5: apply_shift
     print('--- Test 5: apply_shift ---')
