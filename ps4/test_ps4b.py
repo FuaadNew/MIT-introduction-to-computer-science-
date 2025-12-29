@@ -1,5 +1,5 @@
-import Message from ps4b
-import PlaintextMessage from ps4b
+from ps4b import Message 
+from ps4b import PlaintextMessage
 
 if __name__ == '__main__':
      # ===== MESSAGE CLASS TESTS =====
