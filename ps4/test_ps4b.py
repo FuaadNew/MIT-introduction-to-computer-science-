@@ -1,5 +1,6 @@
 from ps4b import Message 
 from ps4b import PlaintextMessage
+from ps4b import CiphertextMessage
 
 if __name__ == '__main__':
      # ===== MESSAGE CLASS TESTS =====
@@ -80,4 +81,24 @@ if __name__ == '__main__':
     print('Input: "Hello, World!" with shift=4')
     print('Expected get_message_text_encrypted(): "Lipps, Asvph!"')
     print('Actual:', plaintext2.get_message_text_encrypted())
+    print()
+
+    # ===== CIPHERTEXTMESSAGE CLASS TESTS =====
+    print('===== CiphertextMessage Class Tests =====')
+    print()
+
+    # Test 1: Decrypt a simple word
+    print('--- Test 1: CiphertextMessage decrypt simple ---')
+    ciphertext1 = CiphertextMessage('jgnnq')
+    print('Input: "jgnnq" (encrypted "hello" with shift=2)')
+    print('Expected: (24, "hello")')
+    print('Actual:', ciphertext1.decrypt_message())
+    print()
+
+    # Test 2: Decrypt a sentence with punctuation
+    print('--- Test 2: CiphertextMessage decrypt sentence ---')
+    ciphertext2 = CiphertextMessage('Lipps, Asvph!')
+    print('Input: "Lipps, Asvph!" (encrypted "Hello, World!" with shift=4)')
+    print('Expected: (22, "Hello, World!")')
+    print('Actual:', ciphertext2.decrypt_message())
     print()
