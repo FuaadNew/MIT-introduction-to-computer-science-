@@ -18,14 +18,14 @@ def load_words(file_name):
     take a while to finish.
     '''
     
-    print("Loading word list from file...")
+    #print("Loading word list from file...")
     # inFile: file
     inFile = open(file_name, 'r')
     # wordlist: list of strings
     wordlist = []
     for line in inFile:
         wordlist.extend([word.lower() for word in line.split(' ')])
-    print("  ", len(wordlist), "words loaded.")
+    #print("  ", len(wordlist), "words loaded.")
     return wordlist
 
 def is_word(word_list, word):
@@ -133,11 +133,15 @@ class SubMessage(object):
         on the dictionary
         '''
         text = self.get_message_text()
-        
+     
         res = ""
 
         for c in text:
-            res+=transpose_dict[c]
+            if c not in transpose_dict:
+                res+=c
+            else:
+                res+=transpose_dict[c]
+       
         return res
         
 class EncryptedSubMessage(SubMessage):
@@ -173,19 +177,18 @@ class EncryptedSubMessage(SubMessage):
         Hint: use your function from Part 4A
         '''
         vowelsPermute = get_permutations(VOWELS_LOWER)
-        word_list = 
         def check(permutes):
             word_list = load_words(WORDLIST_FILENAME)
             res_number = 0
             res_str = ""
-            words =  self.get_message_text().split()
+            words =  self.get_message_text()
             permutedict = self.build_transpose_dict(permutes)
             encrypted_message = self.apply_transpose(permutedict).split()
+           
             for word in encrypted_message:
                 if is_word(word_list, word):
                     res_number+=1
-
-            return (res_number, words)
+            return (res_number, " ".join(encrypted_message))
 
 
         best_match = 0
@@ -196,7 +199,7 @@ class EncryptedSubMessage(SubMessage):
                 best_match = matches
                 best_message = message
         
-
+       
         if not best_match:
             return self.get_message_text()
         return best_message
@@ -212,6 +215,7 @@ if __name__ == '__main__':
     print("Expected encryption:", "Hallu Wurld!")
     print("Actual encryption:", message.apply_transpose(enc_dict))
     enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
+    print("Expected Decrypted message:", "Hello World!")
     print("Decrypted message:", enc_message.decrypt_message())
      
     #TODO: WRITE YOUR TEST CASES HERE
