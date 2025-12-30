@@ -9,7 +9,7 @@ if __name__ == '__main__':
             Cipher = CiphertextMessage("pmttw, ewztl!")
             decrypted = Cipher.decrypt_message()
             assert decrypted == (18, "hello, world!")
-            print(f"Test Case, {decrypted[1]}, shifted {decrypted[0]} times passes")git
+            print(f"Test Case, {decrypted[1]}, shifted {decrypted[0]} times passes")
       except AssertionError:
             print(f"{decrypted[1]} failed")
 

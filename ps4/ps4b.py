@@ -265,10 +265,26 @@ class CiphertextMessage(Message):
 
 if __name__ == '__main__':
     
-    pass
+
 
 #    print('Actual Output:', ciphertext.decrypt_message())
 
 #    #Todo: WRITE YOUR TEST CASES HERE
+    try:
+        Cipher = CiphertextMessage("pmttw, ewztl!")
+        decrypted = Cipher.decrypt_message()
+        assert decrypted == (18, "hello, world!")
+        print(f"Test Case, {decrypted[1]}, shifted {decrypted[0]} times passes")
+    except AssertionError:
+        print(f"{decrypted[1]} failed")
+
+      
+    try:
+        Cipher = CiphertextMessage("W vohs Cpxsqh cfwsbhohsr dfcufoaawbu")
+        decrypted = Cipher.decrypt_message()
+        assert decrypted == (12, "I hate Object orientated programming")
+        print(f"Test Case, {decrypted[1]}, shifted {decrypted[0]} times passes")
+    except AssertionError:
+        print(f"{decrypted[1]} failed")
 
 #    #TODo: best shift value and unencrypted story 
