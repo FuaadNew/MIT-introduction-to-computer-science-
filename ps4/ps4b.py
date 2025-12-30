@@ -239,6 +239,7 @@ class CiphertextMessage(Message):
         best_count = 0
         best_shift =0
         best_message = ""
+        word_list = self.valid_words
         text = self.get_message_text()
         for shift in range(26):
             test_count = 0
@@ -263,9 +264,11 @@ class CiphertextMessage(Message):
      #delete this line and replace with your code here
 
 if __name__ == '__main__':
+    
+    pass
 
 #    print('Actual Output:', ciphertext.decrypt_message())
 
-    #TODO: WRITE YOUR TEST CASES HERE
+#    #Todo: WRITE YOUR TEST CASES HERE
 
-    #TODO: best shift value and unencrypted story
+#    #TODo: best shift value and unencrypted story 
