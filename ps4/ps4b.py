@@ -270,14 +270,29 @@ if __name__ == '__main__':
 #    print('Actual Output:', ciphertext.decrypt_message())
 
 #    #Todo: WRITE YOUR TEST CASES HERE
-    try:
-        Cipher = CiphertextMessage("pmttw, ewztl!")
-        decrypted = Cipher.decrypt_message()
-        assert decrypted == (18, "hello, world!")
-        print(f"Test Case, {decrypted[1]}, shifted {decrypted[0]} times passes")
-    except AssertionError:
-        print(f"{decrypted[1]} failed")
 
+
+    try:
+        plainText = PlaintextMessage("I hate Object orientated programming", 14)
+        encrypted = plainText.get_message_text_encrypted()
+        
+        assert encrypted == "W vohs Cpxsqh cfwsbhohsr dfcufoaawbu"
+        print(f'Test Case, "I hate Object orientated programming", shifted {plainText.shift} times passes')
+        print("________________")
+        print(f"{encrypted}")
+    except AssertionError:
+        print(f'"I hate Object orientated programming" failed with wrong encryption {encrypted}')
+    
+    try:
+        plainText = PlaintextMessage("Imperitive progamming is better",16)
+        encrypted = plainText.get_message_text_encrypted()
+        assert encrypted == "Ycfuhyjylu fhewqccydw yi rujjuh"
+        print(f'Test Case, "Imperitive progamming is better", shifted {plainText.shift} times passes')
+        print("________________")
+        print(f"{encrypted}")
+    except AssertionError:
+        print(f'"Imperitive progamming is better", shifted {plainText.shift}, failed with wrong encryption {encrypted}')
+    
       
     try:
         Cipher = CiphertextMessage("W vohs Cpxsqh cfwsbhohsr dfcufoaawbu")
@@ -285,6 +300,10 @@ if __name__ == '__main__':
         assert decrypted == (12, "I hate Object orientated programming")
         print(f"Test Case, {decrypted[1]}, shifted {decrypted[0]} times passes")
     except AssertionError:
-        print(f"{decrypted[1]} failed")
+        print(f"{decrypted[1]} failed with wrong encryption {decrypted[0]}")
 
 #    #TODo: best shift value and unencrypted story 
+
+    story = get_story_string()
+
+
