@@ -303,7 +303,16 @@ if __name__ == '__main__':
         print(f"{decrypted[1]} failed with wrong encryption {decrypted[0]}")
 
 #    #TODo: best shift value and unencrypted story 
-
-    story = get_story_string()
+    #best shift value is 12
+    #The story is " 'Jack Florey is a mythical character created on the s
+    # spur of a moment to help cover an insufficiently planned hack.
+    #  He has been registered for classes at MIT twice before, 
+    # but has reportedly never passed aclass. It has been the tradition of
+    #  the residents of East Campus to become Jack Florey for a few nights each
+    #  year to educate incoming students in the ways, means, and ethics of hacking.'"
+    #story = get_story_string()
+    #Cipher = CiphertextMessage(story)
+    #decrypted = Cipher.decrypt_message()
+    #print(decrypted)
 
 
