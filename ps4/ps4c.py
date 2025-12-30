@@ -52,7 +52,6 @@ def is_word(word_list, word):
 ### END HELPER CODE ###
 
 WORDLIST_FILENAME = 'words.txt'
-
 # you may find these constants helpful
 VOWELS_LOWER = 'aeiou'
 VOWELS_UPPER = 'AEIOU'
@@ -152,7 +151,8 @@ class EncryptedSubMessage(SubMessage):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        super().__init__(text)
+        
 
     def decrypt_message(self):
         '''
@@ -172,8 +172,35 @@ class EncryptedSubMessage(SubMessage):
         
         Hint: use your function from Part 4A
         '''
-        pass #delete this line and replace with your code here
-    
+        vowelsPermute = get_permutations(VOWELS_LOWER)
+        word_list = 
+        def check(permutes):
+            word_list = load_words(WORDLIST_FILENAME)
+            res_number = 0
+            res_str = ""
+            words =  self.get_message_text().split()
+            permutedict = self.build_transpose_dict(permutes)
+            encrypted_message = self.apply_transpose(permutedict).split()
+            for word in encrypted_message:
+                if is_word(word_list, word):
+                    res_number+=1
+
+            return (res_number, words)
+
+
+        best_match = 0
+        best_message = ""
+        for permute in vowelsPermute:
+            matches, message = check(permute)
+            if matches > best_match:
+                best_match = matches
+                best_message = message
+        
+
+        if not best_match:
+            return self.get_message_text()
+        return best_message
+        
 
 if __name__ == '__main__':
 
