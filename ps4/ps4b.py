@@ -302,6 +302,15 @@ if __name__ == '__main__':
     except AssertionError:
         print(f"{decrypted[1]} failed with wrong encryption {decrypted[0]}")
 
+    
+    try:
+        Cipher = CiphertextMessage("Y xqju Erzusj ehyudjqjut fhewhqccydw")
+        decrypted = Cipher.decrypt_message()
+        assert decrypted == (10, "I hate Object orientated programming")
+        print(f"Test Case, {decrypted[1]}, shifted {decrypted[0]} times passes")
+    except AssertionError:
+        print(f"{decrypted[1]} failed with wrong encryption {decrypted[0]}")
+
 #    #TODo: best shift value and unencrypted story 
     #best shift value is 12
     #The story is " 'Jack Florey is a mythical character created on the s
