@@ -218,4 +218,52 @@ if __name__ == '__main__':
     print("Expected Decrypted message:", "Hello World!")
     print("Decrypted message:", enc_message.decrypt_message())
      
+
+    #permutation = "eaiuo"
+    #message = "aeiouTT"
+    #subMessage = SubMessage(message)
+    #transpose_dict = subMessage.build_transpose_dict(permutation)
+    #returned_message = subMessage.apply_transpose(transpose_dict)
+    #print(f"permutation, {permutation}, message: {message}, expected result 'eaiuoTT' , Actual: {returned_message}")
+
+
+
+    #permutation = "ouiae"
+    #message = "aeiouZZ"
+    #subMessage = SubMessage(message)
+    #transpose_dict = subMessage.build_transpose_dict(permutation)
+    #returned_message = subMessage.apply_transpose(transpose_dict)
+    #print(f"permutation, {permutation}, message: {message}, expected result 'ouiaeZZ' , Actual: {returned_message}")
+
+
     #TODO: WRITE YOUR TEST CASES HERE
+   # message = SubMessage("Send her away!")
+                          # sand har ewey
+    #permutation = "eaiuo"
+                   #aeiou
+    
+    #enc_dict = message.build_transpose_dict(permutation)
+    #print("Original message:", message.get_message_text(), "Permutation:", permutation)
+    #print("Expected encryption:", "Sand har ewey!")
+    #print("Actual encryption:", message.apply_transpose(enc_dict))
+    #enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
+    #print("Expected Decrypted message:", "Send her away!")
+    #print("Decrypted message:", enc_message.decrypt_message())
+
+
+
+    #message = SubMessage("The hen house.")
+                         #fox an thu hun housu
+                          # sand har ewey
+    #permutation = "iuaoe"
+                  #aeiou
+    
+    #enc_dict = message.build_transpose_dict(permutation)
+    #print("Original message:", message.get_message_text(), "Permutation:", permutation)
+    #print("Expected encryption:", "Thu hun housu.")
+    #print("Actual encryption:", message.apply_transpose(enc_dict))
+    #enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
+    #print("Expected Decrypted message:", "The hen house,")
+    #print("Decrypted message:", enc_message.decrypt_message())
+     
+     
