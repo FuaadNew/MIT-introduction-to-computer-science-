@@ -112,7 +112,7 @@ class SubMessage(object):
         permuteDict = {}
         for i,x in enumerate(vowels_permutation):
             permuteDict[VOWELS_LOWER[i]] = x
-            permuteDict[VOWELS_UPPER[i]] = x
+            permuteDict[VOWELS_UPPER[i]] = x.upper()
         
         for c in CONSONANTS_LOWER:
             permuteDict[c] = c
