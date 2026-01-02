@@ -172,6 +172,15 @@ class TimeTrigger(Trigger):
 # Problem 6
 # TODO: BeforeTrigger and AfterTrigger
 
+class BeforeTrigger(TimeTrigger):
+    def __init__(self,time):
+
+        super().__init__(time)
+
+    def evaluate(self, story):
+        return True if story.pubdate < self.time
+
+
 
 # COMPOSITE TRIGGERS
 
