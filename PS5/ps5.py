@@ -116,11 +116,10 @@ class PhraseTrigger(Trigger):
 
         phrase = self.phrase.split()
         text_words = text.split()
-        print(phrase)
-        print(text.split())
+      
        
         for i in range(len(text_words) - len(phrase) + 1):
-            if text_words[i:i + len(phrase)] == phrase_words:
+            if text_words[i:i + len(phrase)] == phrase:
                 return True
         return False
         
@@ -131,6 +130,18 @@ class PhraseTrigger(Trigger):
 
 # Problem 3
 # TODO: TitleTrigger
+
+class TitleTrigger(PhraseTrigger):
+
+    def __init__(self,phrase):
+
+        super().__init__(phrase)
+    
+
+    def evaluate(self, story):
+        return self.is_phrase_in(story.get_title())
+
+
 
 # Problem 4
 # TODO: DescriptionTrigger
