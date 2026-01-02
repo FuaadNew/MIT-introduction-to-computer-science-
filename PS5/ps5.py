@@ -101,6 +101,10 @@ class Trigger(object):
 # Problem 2
 # TODO: PhraseTrigger
 
+class Trigger:
+    def __init__(self):
+        
+
 # Problem 3
 # TODO: TitleTrigger
 
