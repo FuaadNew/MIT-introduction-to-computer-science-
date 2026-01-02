@@ -94,6 +94,7 @@ class Trigger(object):
         for the given news item, or False otherwise.
         """
         # DO NOT CHANGE THIS!
+        
        
 
 # PHRASE TRIGGERS
@@ -101,8 +102,30 @@ class Trigger(object):
 # Problem 2
 # TODO: PhraseTrigger
 class PhraseTrigger(Trigger):
-    def __init__(self):
-        super()__init__(story)
+
+    def __init__(self,phrase):
+        self.phrase = phrase.lower()
+
+
+
+    def is_phrase_in(self,text):
+        text = text.lower()
+        for char in string.punctuation:
+            if char in text:
+                text = text.replace(char, ' ')
+
+        phrase = self.phrase.split()
+        text_words = text.split()
+        print(phrase)
+        print(text.split())
+       
+        for i in range(len(text_words) - len(phrase) + 1):
+            if text_words[i:i + len(phrase)] == phrase_words:
+                return True
+        return False
+        
+
+    
 
 
 
