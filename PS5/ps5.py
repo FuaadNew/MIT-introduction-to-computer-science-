@@ -221,6 +221,15 @@ class AndTrigger(Trigger):
 # Problem 9
 # TODO: OrTrigger
 
+class OrTrigger(Trigger):
+    def __init__(self, T1, T2):
+        self.T1 = T1
+        self.T2 = T2
+
+    def evaluate(self, story):
+        return self.T1.evaluate(story) or self.T2.evaluate(story)
+
+
 
 #======================
 # Filtering
@@ -236,7 +245,16 @@ def filter_stories(stories, triggerlist):
     # TODO: Problem 10
     # This is a placeholder
     # (we're just returning all the stories, with no filtering)
-    return stories
+    res = []
+    for story in stories:
+        for trigger in triggerlist:
+            if trigger.evaluate(story) and story not in res:
+                res.append(story)
+    return res
+
+
+
+
 
 
 
