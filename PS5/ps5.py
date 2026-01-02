@@ -146,6 +146,16 @@ class TitleTrigger(PhraseTrigger):
 # Problem 4
 # TODO: DescriptionTrigger
 
+class DescriptionTrigger(PhraseTrigger):
+
+    def __init__(self,phrase):
+
+        super().__init__(phrase)
+    
+
+    def evaluate(self, story):
+        return self.is_phrase_in(story.get_description())
+
 # TIME TRIGGERS
 
 # Problem 5
