@@ -94,7 +94,15 @@ class Trigger(object):
         for the given news item, or False otherwise.
         """
         # DO NOT CHANGE THIS!
+        self.story = story
        
+
+    def PhraseTrigger(story):
+        story = self.story.split()
+        print(story)
+
+
+
 
 # PHRASE TRIGGERS
 
