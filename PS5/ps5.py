@@ -179,7 +179,7 @@ class BeforeTrigger(TimeTrigger):
 
     def evaluate(self, story):
         pubdate = story.pubdate.replace(tzinfo = None) if story.pubdate.tzinfo else story.pubdate
-        return story.pubdate < self.time 
+        return pubdate < self.time 
 
 
 class AfterTrigger(TimeTrigger):
@@ -189,7 +189,7 @@ class AfterTrigger(TimeTrigger):
 
     def evaluate(self, story):
         pubdate = story.pubdate.replace(tzinfo = None) if story.pubdate.tzinfo else story.pubdate
-        return story.pubdate > self.time 
+        return pubdate > self.time 
 
 
 
