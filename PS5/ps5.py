@@ -167,7 +167,7 @@ class DescriptionTrigger(PhraseTrigger):
 
 class TimeTrigger(Trigger):
     def __init__(self,time):
-        self.time = dateTime(time)
+        self.time = datetime.strptime(time, "%d %b %Y %H:%M:%S" )
     
 # Problem 6
 # TODO: BeforeTrigger and AfterTrigger
