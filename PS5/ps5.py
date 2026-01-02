@@ -279,10 +279,62 @@ def read_trigger_config(filename):
             lines.append(line)
 
     # TODO: Problem 11
+    triggerDict = {}
+    #for line in lines.spit(","):
+    
+    triggerlist = []
+
+    for line in lines:
+        part = line.split(",")
+        print("PART", part)
+        
+        
+        if part[1] == "TITLE":
+            name = part[0]
+            story = part[2]
+            triggerDict[name] = TitleTrigger(story)
+        if part[1] == "DESCRIPTION":
+            name = part[0]
+            story = part[2]
+            triggerDict[name] = DescriptionTrigger(story)
+        
+        if part[1] == "AFTER":
+            name = part[0]
+            date = part[2]
+            triggerDict[name] = AfterTrigger(date)
+
+        if part[1] == "BEFORE":
+            name = part[0]
+            date = part[2]
+            triggerDict[name] = BeforeTrigger(date)
+
+        if part[1] == "AND":
+            name = part[0]
+            trigger_one, trigger_two = part[2],part[3]
+            triggerDict[name] = AndTrigger(triggerDict[trigger_one], triggerDict[trigger_two] )
+
+        if part[1] == "OR":
+            name = part[0]
+            trigger_one, trigger_two = part[2],part[3]
+            triggerDict[name] = OrTrigger(triggerDict[trigger_one], triggerDict[trigger_two] )
+
+
+        if part[1] == "NOT":
+            name = part[0]
+            trigger =  part[2]
+            triggerDict[name] = NotTrigger(triggerDict[trigger])
+
+        if part[0]== "ADD":
+            for i in range(1,len(part)):
+                triggerlist.append(triggerDict[part[i]])
+
+    print(lines)
+    return triggerlist
+
     # line is the list of lines that you need to parse and for which you need
     # to build triggers
 
-    print(lines) # for now, print it so you see what it contains!
+    # for now, print it so you see what it contains!
 
 
 
@@ -292,15 +344,15 @@ def main_thread(master):
     # A sample trigger list - you might need to change the phrases to correspond
     # to what is currently in the news
     try:
-        t1 = TitleTrigger("election")
-        t2 = DescriptionTrigger("Trump")
-        t3 = DescriptionTrigger("Clinton")
+        t1 = TitleTrigger("swiss")
+        t2 = DescriptionTrigger("new years")
+        t3 = DescriptionTrigger("isis")
         t4 = AndTrigger(t2, t3)
         triggerlist = [t1, t4]
 
         # Problem 11
         # TODO: After implementing read_trigger_config, uncomment this line 
-        # triggerlist = read_trigger_config('triggers.txt')
+        triggerlist = read_trigger_config('triggers.txt')
         
         # HELPER CODE - you don't need to understand this!
         # Draws the popup window that displays the filtered stories
