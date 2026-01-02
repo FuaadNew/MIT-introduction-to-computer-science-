@@ -94,16 +94,14 @@ class Trigger(object):
         for the given news item, or False otherwise.
         """
         # DO NOT CHANGE THIS!
-        raise NotImplementedError
+       
 
 # PHRASE TRIGGERS
 
 # Problem 2
 # TODO: PhraseTrigger
 
-class Trigger:
-    def __init__(self):
-        
+
 
 # Problem 3
 # TODO: TitleTrigger
