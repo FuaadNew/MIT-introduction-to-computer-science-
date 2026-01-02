@@ -178,7 +178,8 @@ class BeforeTrigger(TimeTrigger):
         super().__init__(time)
 
     def evaluate(self, story):
-        return True if story.pubdate < self.time else False
+        pubdate = story.pubdate.replace(tzinfo = None) if story.pubdate.tzinfo else story.pubdate
+        return story.pubdate < self.time 
 
 
 class AfterTrigger(TimeTrigger):
@@ -187,7 +188,8 @@ class AfterTrigger(TimeTrigger):
         super().__init__(time)
 
     def evaluate(self, story):
-        return True if story.pubdate > self.time else False
+        pubdate = story.pubdate.replace(tzinfo = None) if story.pubdate.tzinfo else story.pubdate
+        return story.pubdate > self.time 
 
 
 
