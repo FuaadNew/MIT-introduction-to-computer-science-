@@ -208,6 +208,16 @@ class NotTrigger(Trigger):
 # Problem 8
 # TODO: AndTrigger
 
+
+
+class AndTrigger(Trigger):
+    def __init__(self, T1, T2):
+        self.T1 = T1
+        self.T2 = T2
+
+    def evaluate(self, story):
+        return self.T1.evaluate(story) and self.T2.evaluate(story)
+
 # Problem 9
 # TODO: OrTrigger
 
