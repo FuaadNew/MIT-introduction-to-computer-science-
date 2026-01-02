@@ -178,7 +178,7 @@ class BeforeTrigger(TimeTrigger):
         super().__init__(time)
 
     def evaluate(self, story):
-        return True if story.pubdate < self.time
+        return True if story.pubdate < self.time else False
 
 
 class AfterTrigger(TimeTrigger):
@@ -187,7 +187,7 @@ class AfterTrigger(TimeTrigger):
         super().__init__(time)
 
     def evaluate(self, story):
-        return True if story.pubdate > self.time
+        return True if story.pubdate > self.time else False
 
 
 
